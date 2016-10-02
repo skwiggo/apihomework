@@ -1,7 +1,10 @@
 var app = function(){
   var button = document.getElementById("submit");
-  var url = 'https://api.spotify.com/v1/search?q="doom metal"&type=playlist';
-  button.onclick = makeRequest(url, requestComplete);
+  button.onclick = function() {
+    var genre = document.getElementById("input").value;
+    var url = 'https://api.spotify.com/v1/search?q=' + genre + '&type=playlist';
+    makeRequest(url, requestComplete);
+  }.bind(this);
 }
 
 var makeRequest = function(url, callback){
@@ -15,7 +18,6 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var inputValue = this.responseText;
   var search = JSON.parse(inputValue);
-  var searchResults = document.getElementById("input").value;
   console.log(inputValue);
 }
 
