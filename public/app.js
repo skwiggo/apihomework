@@ -1,7 +1,9 @@
 var app = function(){
-  var url = 'https://api.spotify.com/v1/search';
   var button = document.querySelector('submit');
-  button.onclick = makeRequest(url, requestComplete);
+  button.onclick = function() {
+    var url = 'https://api.spotify.com/v1/search?q="doom metal"&type=playlist';
+    makeRequest(url, requestComplete);
+  }.bind(this);
 }
 
 var makeRequest = function(url, callback){
@@ -15,7 +17,7 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var search = this.responseText;
   var results = JSON.parse(search);
-  console.log(search);
+  console.log(results);
 }
 
 window.onload = app;
