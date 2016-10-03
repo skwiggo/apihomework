@@ -16,15 +16,14 @@ var makeRequest = function(url, callback) {
 
 var requestComplete = function() {
   if(this.status !== 200) return;
-  var inputValue = this.responseText;
-  var search = JSON.parse(inputValue);
-  var genre = document.getElementById('input').value;
+  var jsonString = this.responseText;
+  var search = JSON.parse(jsonString);
   console.log(search);
-  // var playlists;
-  // for(playlist of search) {
-  //   var displayResults = document.getElementById('results');
-  //   displayResults.innerText = playlist;
-  // }
+  for (i = 0; i < search.playlists.items.length; i++) {
+      var returnedPlaylists = search.playlists.items[i];
+      var results = document.getElementById("results");
+      results.innerText = returnedPlaylists;
+    }
 }
 
 window.onload = app;
