@@ -20,9 +20,9 @@ var requestComplete = function() {
   var search = JSON.parse(jsonString);
   console.log(search);
   for (i = 0; i < search.playlists.items.length; i++) {
-      var returnedPlaylists = search.playlists.items[i];
+      var returnedPlaylists = search.playlists.items[Math.random() * 20];
       var results = document.getElementById("results");
-      results.innerText = returnedPlaylists;
+      results.innerText = returnedPlaylists.name;
     }
 }
 
